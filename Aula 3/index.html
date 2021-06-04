@@ -1,0 +1,58 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <script>
+        function Empresa() {
+            this.nome;
+            this.cnpj;
+            this.produto;
+            this.endereco;
+        }
+        function Setor() {
+            Empresa.call(this);
+            this.nomedoSetor;
+            this.lider;
+        }
+        function Chefe() {
+            Setor.call(this);
+            this.nomedoChefe;
+            this.formacao;
+            this.funcao;
+        }
+        function Funcionario() {
+            Setor.call(this);
+            this.nomedoFuncionario;
+            this.matricula;
+        }
+        Setor.prototype = Object.create(Empresa.prototype);
+        Chefe.prototype = Object.create(Setor.prototype);
+        Funcionario.prototype = Object.create(Setor.prototype);
+
+        var novoSetor = new Setor;
+        novoSetor.nomedoSetor = "RH"
+        console.log(novoSetor.nomedoSetor);
+
+        var novoSetor = new Setor;
+        novoSetor.nomedoChefe = "Julio";
+        console.log(novoSetor.nomedoChefe);
+
+        var novoChefe = new Chefe;
+        novoChefe.nomedoChefe = "Raul";
+        console.log(novoChefe.nomedoChefe); // exemplo de programa dando o retorno como deveria.
+        console.log(novoChefe.lider); // exemplo que mostra o erro de não identificado
+
+        var novoFuncionario = new Funcionario;
+        novoFuncionario.nomedoFuncionario = "Jean";
+        novoFuncionario.nomedoSetor = "Financeiro";
+        console.log(novoFuncionario.nomedoFuncionario);
+        console.log(novoFuncionario.funcao);
+
+
+
+    </script>
+</body>
+
+</html>
